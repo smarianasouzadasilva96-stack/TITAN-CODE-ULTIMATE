@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: titan-code-ultimate
+    runtime: node
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: APP_ACCESS_KEY
+        sync: false
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_BASE_URL
+        value: https://ollama.com/v1
+      - key: AI_MODEL
+        value: gemma4:31b-cloud
